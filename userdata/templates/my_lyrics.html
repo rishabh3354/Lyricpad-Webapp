@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% if request.user.username %}
+
+{% if user_history|length == 0 %}
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+          <th><p style="text-align: center;font-size: 2em;">history not found!</p></th>
+      </tr>
+    </thead>
+</table>
+
+{% else%}
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+          <th><p style="text-align: center;font-size: 2em;">Your History!</p></th>
+      </tr>
+    </thead>
+</table>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>SNo.</th>
+        <th>SONG</th>
+        <th>ARTIST</th>
+        <th>ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in user_history %}
+
+      <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{row.song_name}}</td>
+          <td>{{row.song_artist}}</td>
+          <td>
+              <a href="/results?song_url={{row.song_url}}&song_name={{row.song_name}}&song_artist={{row.song_artist}}"
+                 class = "btn btn-primary black-background white btn-xs">SHOW LYRICS</a>
+              <a onclick="return deleteItem()" href="/delete?id={{row.id}}" class = "btn btn-warning btn-xs">DELETE</a>
+          </td>
+
+
+      </tr>
+
+<!--onclick="return deleteItem() return is must-->
+
+      {%endfor%}
+
+    </tbody>
+  </table>
+
+{% endif %}
+
+
+
+<script>
+
+function deleteItem(){
+
+    if(confirm("Are You sure to delete this item"))
+        return true;
+    else return false;
+}
+
+// confirm()
+// prompt()
+//     alert()
+
+</script>
+{%else%}
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+          <th><p style="text-align: center;font-size: 2em;">Please login to see history!</p></th>
+      </tr>
+    </thead>
+</table>
+
+
+
+{% endif %}
+
+
+{% endblock%}

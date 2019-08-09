@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h1>hello scrapping</h1>
+
+{% for row in key %}
+
+
+{{row.song_id}}
+{{row.song_name}}
+{{row.song_artist}}
+{{row.song_url}}
+
+
+
+<br>
+
+{% endfor%}
+
+{% endblock%}

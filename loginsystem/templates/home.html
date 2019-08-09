@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block content%}
+<!--<div class="container" style="margin-top: 10%;">-->
+<div class="col-md-12">
+<div class="row">
+<div id="logo" class="text-center">
+<h1>Lyricpad</h1><p>Song's lyrics app</p>
+</div>
+
+<form role="form" id="form-buscar">
+<div class="form-group">
+<div class="input-group">
+<input id="1" class="form-control" type="text" name="search" placeholder="Song | Artist | Album " required/>
+<span class="input-group-btn">
+
+<button class="btn btn-primary black-background white" type="submit">
+<i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
+</button>
+</span>
+</div>
+</div>
+</form>
+</div>
+</div>
+<!--</div>-->
+<!--</div>-->
+
+
+
+{% if results|length > 0 %}
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>RESULTS</th>
+        <th>SONG</th>
+        <th>ARTIST</th>
+        <th>ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in results %}
+      <tr>
+          <td>{{row.song_id}}</td>
+          <td>{{row.song_name}}</td>
+          <td>{{row.song_artist}}</td>
+          <td>
+              <a href="/results?song_url={{row.song_url}}&song_name={{row.song_name}}&song_artist={{row.song_artist}}"
+                 class = "btn btn-primary black-background white btn-xs">GET LYRICS</a>
+          </td>
+      </tr>
+
+<!--onclick="return deleteItem() return is must-->
+
+    {%endfor%}
+
+    </tbody>
+  </table>
+
+{% endif %}
+
+
+
+{% endblock %}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Contact_us</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+<style>
+
+footer {
+position: fixed;
+   left: 0;
+   bottom: 0px;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;
+}
+
+
+.container {
+
+padding-bottom: 25px;
+}
+
+
+.black-background {background-color:#000000;}
+.white {color:#ffffff;}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="/">Lyricpad</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          {% if request.user.username %}
+
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile <span class="caret"></span></a>
+            {% endif %}
+
+          <ul class="dropdown-menu">
+            <li><a href="/mylyrics">Mylyrics</a></li>
+<!--            <li><a href="#">p2</a></li>-->
+<!--            <li><a href="#">p3</a></li>-->
+          </ul>
+        </li>
+        <li><a href="/about">About me</a></li>
+        <li><a href="/contact">Contact us</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+
+        {% if request.user.username%}
+
+            <li><a href="/signout"><span class="glyphicon glyphicon-log-in"></span> {{request.user.username}} (Logout)</a></li>
+
+
+          {%else%}
+
+            <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+          {%endif%}
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container col-sm-4 col-sm-offset-4">
+
+{% load crispy_forms_tags %}
+
+<form action="" method="POST" novalidate>{% csrf_token%}
+
+    {{ form_data | crispy }}
+
+
+
+    <input type="submit" value="Send" class="btn btn-success">
+
+
+</form>
+      <p style="color: crimson">{{message_conf}}</p>
+
+
+</div>
+
+
+<footer class="fixed-bottom">
+  <div class="footer-copyright text-center py-3">Developed by |
+    <a href="https://www.knoobypie.com/about-me/">Rishabh Bhardwaj</a>
+  </div>
+</footer>
+
+
+</body>
+</html>

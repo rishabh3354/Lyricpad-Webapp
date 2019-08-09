@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+
+
+{% block head %}
+
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+
+
+{% endblock head %}
+
+{% block content%}
+
+
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="text-align: center;font-size: 1.2em" >
+            LYRICS | SONG: {{result_song}} | ARTIST: {{result_artist}}
+            <button class = "btn btn-primary black-background white btn-xs"
+           onclick="goBack()">Go Back</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td style="text-align: center;font-size: 1.1em">{{lyrics| safe}}</td>
+
+      </tr>
+
+
+<!--onclick="return deleteItem() return is must-->
+
+
+    </tbody>
+  </table>
+
+<p align="center">
+<button class = "btn btn-primary black-background white btn-xs"
+           onclick="goBack()">Go Back</button>
+</p>
+{% endblock %}
+
+
+
+
